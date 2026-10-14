@@ -14,9 +14,7 @@ fun redact(Document: String, RedactionValue: String, Character: Char = 'X'): Str
             WordX = Character.toString().repeat(RedactionValue.length)
     
             val index = word.indexOf(RedactionValue)
-            val before = word.substring(0, index)
-            val after = word.substring(index + RedactionValue.length)
-            val FinalWord = before + WordX + after
+            val FinalWord = word.replaceRange(index, index + RedactionValue.length, WordX)
 
             if (FirstValue == 0) {
                 DocumentEdited += FinalWord
