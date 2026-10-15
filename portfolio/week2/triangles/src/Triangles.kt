@@ -16,10 +16,9 @@ fun isValidTriangle(triangle: Triangle): Boolean{
     if (triangle.third < a && triangle.second < b && triangle.first < c ){
         flag = true
         return flag
-
-    return false
-
     }
+    
+    return false
 }
 
 fun triangleArea(triangle: Triangle): Double{
