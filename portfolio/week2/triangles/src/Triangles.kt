@@ -17,6 +17,7 @@ fun isValidTriangle(triangle: Triangle): Boolean{
         flag = true
         return flag
 
+    return flag
 
     }
 }
