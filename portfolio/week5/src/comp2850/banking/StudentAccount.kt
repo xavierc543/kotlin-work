@@ -1,33 +1,30 @@
 package comp2850.banking
 
-class StudentAccount(val holder: String, var balance: Int =  0) : BankAccount(holder, balance) {
+class StudentAccount(holder: String) : BankAccount(holder) {
     
-    fun overdraft(SetOverdraft: Int = 0){
-        require(SetOverdraft > 100)        
-        require(SetOverdraft < 0)
-        var Overdraft = SetOverdraft
-        }
-    fun withdraw(Amount: Int){
 
-        val maxwithdraw = balance + Overdraft
+    var overdraft : Int = 0
+    set(Overdraftvalue){
+        require(Overdraftvalue in 0..100) 
+        field = Overdraftvalue
+    }
+    
+    override fun withdraw(amount: Int){
         
-        if (Amount > maxwithdraw){
-            print("Insufficient funds for withdrawal")
-            throw IllegalArgumentException
-        }
+        require(amount > 0) {"Withdrawal amount must be greater than 0"}
+        val maxwithdraw = balance + overdraft
         
-        balance -= Amount
+        require(amount <= maxwithdraw){"Insufficient funds for withdrawal"}
+        
+        
+        balance -= amount
+    }
+    fun withdrawalsAllowed(): Boolean{ 
+        return balance + overdraft > 0
+    }
 
-
-
-    }   
-
+    override fun toString(): String {
+        return "Account for $holder, balance = $balance (overdraft = $overdraft)"
+    }
+} 
     
-    
-
-
-
-    
-
-
-}
